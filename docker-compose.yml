@@ -12,21 +12,21 @@ services:
       - ./nginx/nginx-selfsigned.key:/etc/nginx/certificates/cert.key
       - ./nginx/nginx-selfsigned.crt:/etc/nginx/certificates/cert.crt
     depends_on:
-      - fpm
+      - fpm-odyssey
       - redis
       - db
 
-  fpm:
+  fpm-odyssey:
     build:
       context: .
-      dockerfile: ./symfony-flex/Dockerfile
+      dockerfile: ./api/Dockerfile
     env_file:
-      - ./symfony-flex/.env
+      - ./api/.env
     ports:
       - "127.0.0.1:9000:9000"
     working_dir: /var/www/html
     volumes:
-      - ./symfony-flex:/var/www/html:cached
+      - ./api:/var/www/html:cached
     depends_on:
       - redis
       - db

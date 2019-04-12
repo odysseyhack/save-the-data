@@ -4,8 +4,8 @@ MAINTAINER Sam Kroon
 
 WORKDIR /var/www/html/
 
-COPY ./symfony-flex/composer.json /var/www/html
-COPY ./symfony-flex/composer.lock /var/www/html
+COPY ./api/composer.json /var/www/html
+COPY ./api/composer.lock /var/www/html
 
 # Install whatever softare you need using apt package manager
 RUN apt-get update && apt-get install -y \
