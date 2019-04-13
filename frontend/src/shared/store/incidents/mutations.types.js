@@ -1,0 +1,6 @@
+
+export const ADD_INCIDENT = 'ADD_INCIDENT';
+export const REMOVE_INCIDENT = 'REMOVE_INCIDENT';
+export const SHOW_INCIDENT = 'SHOW_INCIDENT';
+export const SORT_INCIDENTS = 'SORT_INCIDENTS';
+export const SET_INCIDENTS = 'SET_INCIDENTS'

@@ -1,3 +1,23 @@
-#index:
-#    path: /
-#    controller: App\Controller\DefaultController::index
+login:
+    path: /login
+    controller: App\Controller\AuthController::login
+
+register:
+    path: /admin/register
+    controller: App\Controller\AuthController::register
+
+create-incident:
+    path: /incident/create
+    controller: App\Controller\IncidentController::createIncident
+
+create-evidence:
+    path: /evidence/create
+    controller: App\Controller\EvidenceController::createEvidence
+
+upload-evidence:
+    path: /upload
+    controller: App\Controller\EvidenceController::pictureUpload
+
+#upload-form:
+#    path: /upload-form
+#    controller: App\Controller\EvidenceController::uploadForm

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Thanks for helping!</title>
+
+    </head>
+    <body>
+       <h1 style="margin-left: 1rem; margin-top: 2rem;">
+          Please upload a picture below.
+       </h1>
+
+        <form style="margin-top: 5rem; margin-left: 1rem;"
+            enctype="multipart/form-data" action="/upload?name={{ name }}" method="post"
+        >
+            <input type="file" accept="image/*" name="photo" capture=""/>
+
+            <input type="submit" value="Submit"/>
+        </form>
+
+    </body>
+</html>

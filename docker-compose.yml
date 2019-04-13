@@ -27,6 +27,7 @@ services:
     working_dir: /var/www/html
     volumes:
       - ./api:/var/www/html:cached
+      - ./api/public/images:/var/images
     depends_on:
       - redis
       - db

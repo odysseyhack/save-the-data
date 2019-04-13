@@ -1,0 +1,92 @@
+// Fonts
+@import url('https://fonts.googleapis.com/css?family=Cabin|Open+Sans');
+
+@import 'icons';
+
+// Core
+@import "components/custom/functions";
+@import "components/bootstrap/functions";
+
+@import "components/custom/variables";
+@import "components/bootstrap/variables";
+
+@import "components/custom/mixins";
+@import "components/bootstrap/mixins";
+
+ // Bootstrap components
+@import "components/bootstrap/root";
+@import "components/bootstrap/reboot";
+@import "components/bootstrap/type";
+@import "components/bootstrap/images";
+@import "components/bootstrap/code";
+@import "components/bootstrap/grid";
+@import "components/bootstrap/tables";
+@import "components/bootstrap/forms";
+@import "components/bootstrap/buttons";
+@import "components/bootstrap/transitions";
+@import "components/bootstrap/dropdown";
+@import "components/bootstrap/button-group";
+@import "components/bootstrap/input-group";
+@import "components/bootstrap/custom-forms";
+@import "components/bootstrap/nav";
+@import "components/bootstrap/navbar";
+@import "components/bootstrap/card";
+@import "components/bootstrap/breadcrumb";
+@import "components/bootstrap/pagination";
+@import "components/bootstrap/badge";
+@import "components/bootstrap/jumbotron";
+@import "components/bootstrap/alert";
+@import "components/bootstrap/progress";
+@import "components/bootstrap/media";
+@import "components/bootstrap/list-group";
+@import "components/bootstrap/close";
+@import "components/bootstrap/modal";
+@import "components/bootstrap/tooltip";
+@import "components/bootstrap/popover";
+@import "components/bootstrap/carousel";
+@import "components/bootstrap/utilities";
+@import "components/bootstrap/print";
+
+ // Custom components
+
+ @import "components/custom/alerts.scss";
+ @import "components/custom/buttons.scss";
+ @import "components/custom/dropdown.scss";
+ @import "components/custom/footer.scss";
+ @import "components/custom/forms.scss";
+ @import "components/custom/images.scss";
+ @import "components/custom/modal.scss";
+ @import "components/custom/navbar.scss";
+ @import "components/custom/type.scss";
+ @import "components/custom/tables";
+ @import "components/custom/checkboxes-radio";
+ @import "components/custom/fixed-plugin";
+ @import "components/custom/sidebar-and-main-panel.scss";
+ @import "components/custom/misc.scss";
+ @import "components/custom/rtl.scss";
+ @import "components/custom/input-group.scss";
+ @import "components/custom/loader.scss";
+
+
+ // Vendor / Plugins
+
+@import "components/custom/vendor/plugin-perfect-scrollbar.scss";
+@import "components/custom/vendor/plugin-animate-bootstrap-notify.scss";
+
+// light mode
+
+@import "components/custom/white-content.scss";
+
+// Cards
+
+@import 'components/custom/card';
+@import "components/custom/cards/card-chart";
+@import "components/custom/cards/card-map";
+@import "components/custom/cards/card-user";
+@import "components/custom/cards/card-task";
+@import "components/custom/cards/card-plain";
+
+// Pages
+@import 'pages/login_page';
+@import 'pages/demo';
+@import 'pages/incidents';

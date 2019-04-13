@@ -1,0 +1,154 @@
+.page-header {
+    min-height: 100vh;
+    max-height: 999px;
+    padding: 0;
+    color: #fff;
+    position: relative;
+    overflow: hidden
+}
+
+.page-header {
+    display: flex;
+    align-items: center
+}
+
+.page-header .container,
+.page-header .container-fluid {
+    padding-top: 12vh;
+    padding-bottom: 40px
+}
+
+.page-header .page-header-image {
+    position: absolute;
+    background-size: cover;
+    background-position: 50%;
+    width: 100%;
+    height: 100%;
+    z-index: -1
+}
+
+.page-header>.content {
+    margin-top: 11%;
+    text-align: center;
+    margin-bottom: 50px
+}
+
+.page-header .content-center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 2;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: #fff;
+    padding: 0 15px;
+    width: 100%
+}
+
+.login-page {
+        background-color: darken($secondary,20%)
+}
+
+.login-page .squares {
+    animation: a 1s infinite;
+    background: lighten($primary,10%);
+    position: absolute;
+    transition: .5s ease-out;
+    overflow: hidden;
+    border-radius: 20%
+}
+
+.login-page .squares.square1 {
+    animation: a 4s infinite;
+    height: 300px;
+    width: 300px;
+    opacity: .5;
+    left: 3%;
+    top: -21%
+}
+
+.login-page .squares.square2 {
+    animation: a 6s infinite;
+    height: 400px;
+    width: 400px;
+    opacity: .4;
+    right: -5%;
+    top: -12%
+}
+
+.login-page .squares.square3 {
+    animation: a 5s infinite;
+    height: 200px;
+    width: 200px;
+    opacity: .1;
+    left: -5%;
+    bottom: 0
+}
+
+.login-page .squares.square4 {
+    animation: a 10s infinite;
+    height: 100px;
+    width: 100px;
+    opacity: .9;
+    right: 27%;
+    top: 70%
+}
+
+.login-page .squares.square5 {
+    animation: a 6s infinite;
+    height: 250px;
+    width: 250px;
+    opacity: .1;
+    left: 32%;
+    bottom: 29%
+}
+
+.login-page .squares.square6 {
+    animation: a 9s infinite;
+    left: 10%;
+    top: 35%;
+    height: 80px;
+    width: 80px;
+    opacity: .8
+}
+
+.login-page .squares.square7 {
+    animation: a 3s infinite;
+    width: 300px;
+    height: 300px;
+    right: -5%;
+    bottom: 0;
+    opacity: .1
+}
+
+.card-login {
+    overflow: hidden;
+    text-align: left;
+    background:darken($secondary,25%);
+    z-index: 2;
+}
+
+.card-login .card-header {
+    padding: 0 0 50px;
+    overflow: hidden
+}
+
+.card-login .card-header img {
+    margin-left:1em;
+    width: 350px
+}
+
+.card-login .card-header .card-title {
+       position: relative;
+    font-size: 3em;
+    font-weight: 900;
+    color: #fff;
+    padding-top: 1em;
+    text-transform: lowercase;
+    text-align: center;
+    z-index: 1;
+}
+
+.card-login .card-footer {
+    padding: 15px
+}
