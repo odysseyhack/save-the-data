@@ -22,7 +22,10 @@ app = Flask(__name__)
 
 @app.route('/retrieveImageFeatures')
 def get_number_of_patches():
-    test_image = Image.open('./images/test_image.jpg')
+    filename = request.args.get('filename')
+
+
+    test_image = Image.open('/srv/www/savethedata/project/api/public/images/{}'.format(filename)).resize((800, 600))
 
     with graph.as_default():
         densities = []
@@ -43,7 +46,7 @@ def get_number_of_patches():
                     smoke_pred = type_smoke_classifier.predict(sliding_example)[0][1]
                     found_coordinates.append(coordinates)
                     densities.append(smoke_pred)
-                    
+
     return jsonify({'status': 'ok', 
                     'dark_smoke': 1 if np.mean(densities) > 0.8 else 0,
                     'coordinates': found_coordinates, 
