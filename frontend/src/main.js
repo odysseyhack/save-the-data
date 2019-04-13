@@ -26,7 +26,7 @@ router.beforeEach((to, from, next) => {
 });
 
 router.afterEach((to, from) => {
-  setTimeout(() => store.commit(TOGGLE_LOADING, false), 1500); // timeout for demo purposes
+  setTimeout(() => store.commit(TOGGLE_LOADING, false), 200); // timeout for demo purposes
 });
 
 new Vue({

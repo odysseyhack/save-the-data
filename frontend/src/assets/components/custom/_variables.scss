@@ -894,9 +894,9 @@ $card-border-width:                 $border-width !default;
 $card-border-radius:                $border-radius-sm !default;
 $card-border-color:                 rgba($black, .05);
 $card-inner-border-radius:          calc(#{$card-border-radius} - #{$card-border-width});
-$card-cap-bg:                       $gray-100 !default;
+$card-cap-bg:                       $secondary !default;
 $card-bg:                           $white !default;
-$card-black-background:             #27293d !default;
+$card-black-background:             $secondary !default;
 $card-img-overlay-padding:          1.25rem !default;
 
 //$card-group-margin:                 ($grid-gutter-width / 2);
