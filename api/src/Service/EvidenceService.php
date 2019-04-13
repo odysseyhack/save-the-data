@@ -97,14 +97,27 @@ class EvidenceService {
     }
 
     /**
-     * @param string $filepath
+     * @param string $filename
      * @return array
      */
-    public function callClassifier(string $filepath)
+    public function callClassifier(string $filename)
     {
-        //TODO: call classifier
+        $url = 'https://classifier.firesync.online/retrieveImageFeatures?filename='.$filename;
 
-        return ['is_dark' => true, 'is_fire' => false];
+        $cURL = curl_init();
+
+        curl_setopt($cURL, CURLOPT_URL, $url);
+        curl_setopt($cURL, CURLOPT_HTTPGET, true);
+
+        curl_setopt($cURL, CURLOPT_HTTPHEADER, array(
+            'Accept: application/json'
+        ));
+
+        $result = curl_exec($cURL);
+
+        curl_close($cURL);
+
+        return json_decode($result, true);
     }
 
 }

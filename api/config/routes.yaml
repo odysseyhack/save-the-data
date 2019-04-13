@@ -5,11 +5,7 @@ login:
 register:
     path: /admin/register
     controller: App\Controller\AuthController::register
-#
-#picture-upload:
-#    path: /pictures/upload
-#    controller: App\Controller\PictureController::upload
-#
+
 create-incident:
     path: /incident/create
     controller: App\Controller\IncidentController::createIncident
@@ -22,6 +18,6 @@ upload-evidence:
     path: /upload
     controller: App\Controller\EvidenceController::pictureUpload
 
-upload-form:
-    path: /upload-form
-    controller: App\Controller\EvidenceController::uploadForm
+#upload-form:
+#    path: /upload-form
+#    controller: App\Controller\EvidenceController::uploadForm
