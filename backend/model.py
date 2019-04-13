@@ -24,7 +24,7 @@ app = Flask(__name__)
 def get_number_of_patches():
     filename = request.args.get('filename')
 
-    test_image = Image.open('/srv/www/savethedata/project/api/public/images/{}'.format(filename)).resize((800, 600))
+    test_image = Image.open('/srv/www/savethedata/project/api/public/images/{}'.format(filename)) # .resize((800, 600))
 
     with graph.as_default():
         densities = []
