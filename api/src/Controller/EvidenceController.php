@@ -61,7 +61,7 @@ class EvidenceController extends AbstractController {
         $extension = explode('.', $filename)[1];
 
         try {
-            $filepath = '/public/images/' . $name . '.' . $extension;
+            $filepath = '/var/images/' . $name . '.' . $extension;
             $this->filesystem->dumpFile($filepath, file_get_contents($file));
             $result = $this->evidenceService->callClassifier($filepath);
             $finalResult = ['data' => $result, 'url' => $filepath];
