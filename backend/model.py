@@ -2,7 +2,7 @@ from PIL import Image, ImageDraw, ImageFont
 
 from keras.models import load_model
 import numpy as np
-from flask import Flask, jsonify
+from flask import Flask, jsonify, request
 import tensorflow as tf
 
 
@@ -23,7 +23,6 @@ app = Flask(__name__)
 @app.route('/retrieveImageFeatures')
 def get_number_of_patches():
     filename = request.args.get('filename')
-
 
     test_image = Image.open('/srv/www/savethedata/project/api/public/images/{}'.format(filename)).resize((800, 600))
 
