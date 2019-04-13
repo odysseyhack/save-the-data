@@ -38,7 +38,7 @@ def get_number_of_patches():
                 cords = {
                             'x_index': x_index * CROP_SIZE, 
                             'y_index': y_index * CROP_SIZE,
-                            'x_finish': y_index * CROP_SIZE + CROP_SIZE,
+                            'x_finish': x_index * CROP_SIZE + CROP_SIZE,
                             'y_finish': y_index * CROP_SIZE + CROP_SIZE
                         }
 
