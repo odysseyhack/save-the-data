@@ -21,3 +21,7 @@ create-evidence:
 upload-evidence:
     path: /upload
     controller: App\Controller\EvidenceController::pictureUpload
+
+upload-form:
+    path: /upload-form
+    controller: App\Controller\EvidenceController::uploadForm

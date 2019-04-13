@@ -5,9 +5,12 @@ namespace App\Controller;
 use App\Entity\Incident;
 use App\Service\EvidenceService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Config\Definition\Exception\Exception;
 use Symfony\Component\Filesystem\Filesystem;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Flex\Response;
 
 class EvidenceController extends AbstractController {
 
@@ -44,19 +47,45 @@ class EvidenceController extends AbstractController {
 
     public function pictureUpload(Request $request)
     {
+        /**
+         * @var UploadedFile $file
+         */
         $file = $request->files->get('photo');
-        $name = $request->query->get('name');
+        $name = bin2hex(openssl_random_pseudo_bytes(10));
 
         if (is_null($name) || is_null($file)) {
-            return new JsonResponse(['state' => 'error', 'Name or file not found.'], 400);
+            return new JsonResponse(['state' => 'error', 'message' => 'Name or file not found.'], 400);
         }
 
         $filename = $file->getClientOriginalName();
         $extension = explode('.', $filename)[1];
 
-//        var_dump($filename);exit;
-        $this->filesystem->dumpFile('/var/images/'.$name.$extension, $file);
-        return new JsonResponse(['state' => 'success', 'message' => 'File successfully uploaded.']);
+        try {
+            $filepath = '/public/images/' . $name . '.' . $extension;
+            $this->filesystem->dumpFile($filepath, file_get_contents($file));
+            $result = $this->evidenceService->callClassifier($filepath);
+            $finalResult = ['data' => $result, 'url' => $filepath];
+
+            return new JsonResponse($finalResult);
+
+        } catch (Exception $e) {
+            return new JsonResponse(['state' => 'error', 'message' => 'Name or file not found.'], 400);
+        }
+    }
+
+    /**
+     * @param Request $request
+     * @return JsonResponse|\Symfony\Component\HttpFoundation\Response
+     */
+    public function uploadForm(Request $request)
+    {
+        $name = $request->query->get('name');
+
+        if (is_null($name)) {
+            return new JsonResponse(['state' => 'error', 'message' => 'No name given.']);
+        }
+
+        return $this->render('file_upload.html.twig', ['name' => $name]);
     }
 
 }

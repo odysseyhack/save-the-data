@@ -24,6 +24,11 @@ class EvidenceService {
         $this->serializer = new Serializer($normalizers, $encoders);
     }
 
+    /**
+     * Create new evidence, can be done by dispatch room
+     * @param Incident $incident
+     * @return Evidence|null
+     */
     public function createEvidence(Incident $incident)
     {
         try {
@@ -38,6 +43,68 @@ class EvidenceService {
             $this->logger->error("could not create random string: " . $e->getMessage());
             return null;
         }
+    }
+
+
+    /**
+     * Adds picture to evidence
+     * @param string $name
+     * @param string $filePath
+     * @return void|null
+     */
+    public function updateEvidence(string $name, string $filePath)
+    {
+        try {
+            $img = new \Imagick($filePath);
+        } catch (\ImagickException $e) {
+            return;
+        }
+
+        $pathArray = explode('/', $filePath);
+        $fileName = end($pathArray);
+
+        $allProp = $img->getImageProperties();
+
+        $latitude = $this->getLongLat($allProp['exif:GPSLatitude']);
+        $longitude = $this->getLongLat($allProp['exif:GPSLongitude']);
+
+        //TODO: finish this function
+        return null;
+    }
+
+    /**
+     * Gets simple lat/long from a DMS long/lat
+     * @param $longOrLat
+     * @return float|int|null
+     */
+    private function getLongLat($longOrLat)
+    {
+        $elements = explode(", ", $longOrLat);
+        if (count($elements) !== 3) {
+            return null;
+        }
+
+        $degreesArr = explode('/', $elements[0]);
+        $degrees = ((int) $degreesArr[0] / (int) $degreesArr[1]);
+
+        $minutesArr = explode('/', $elements[1]);
+        $minutes = (float) ((int) $minutesArr[0] / 60 / (int) $minutesArr[1]);
+
+        $secondsArr = explode('/', $elements[2]);
+        $seconds = (float) ((int) $secondsArr[0] / 3600 / (int) $secondsArr[1]);
+
+        return $degrees + $minutes + $seconds;
+    }
+
+    /**
+     * @param string $filepath
+     * @return array
+     */
+    public function callClassifier(string $filepath)
+    {
+        //TODO: call classifier
+
+        return ['is_dark' => true, 'is_fire' => false];
     }
 
 }
