@@ -16,21 +16,24 @@
   margin-left: 25px;
 
 }
-.sidebar,
-.off-canvas-sidebar{
-     @include linear-gradient($primary-states, $primary);
+.sidebar,.off-canvas-sidebar{
+     @include linear-gradient(darken($secondary,20%), darken($secondary,7%));
     height:100%;
     width: 230px;
     position: fixed;
-    //
     top: 0;
     left: 0;
     z-index: 1;
     background-size: cover;
     background-position: center center;
     display: block;
-    box-shadow: 0px 0px 45px 0px rgba(0,0,0,0.6);
+
   
+    .nav {
+      .fire-icons {
+        color:$red !important;
+      }
+    }
 
     .sidebar-wrapper{
         width: $full-width;
@@ -116,23 +119,9 @@
 
       // @extend .animation-transition-general;
     }
-    .logo-tim{
-      border-radius: 50%;
-      border: 1px solid #333;
-      display: block;
-      height: 61px;
-      width: 61px;
-      float: left;
-      overflow: hidden;
-
-      img{
-          width: 60px;
-          height: 60px;
-      }
-    }
 
     .nav{
-        margin-top: 20px;
+        margin-top: 40px;
         display: block;
 
         .caret{
@@ -159,7 +148,7 @@
                 position: relative;
                 text-transform: uppercase;
                 cursor: pointer;
-                font-size: $font-size-xs;
+                font-size: 12px;
                 padding: 10px 8px;
                 line-height: $line-height-lg;
             }
@@ -182,22 +171,13 @@
             }
 
             &.active > a:not([data-toggle="collapse"]){
-                background: transparent;
+                background: rgba(255,255,255,0.07);
 
                 i,p{
                   color: white;
                 }
 
-                &:before{
-                  content: " ";
-                  position: absolute;
-                  height: 6px;
-                  width: 6px;
-                  top: 22px;
-                  left: -4px;
-                  background: $white;
-                  border-radius: 50%;
-                }
+          
             }
 
             &.active > a[data-toggle="collapse"]{
@@ -258,14 +238,15 @@
             line-height: 30px;
             width: 34px;
             text-align: center;
-            color: $opacity-8;
+            color: $red;
             position: relative;
         }
     }
 
     .logo{
         position: relative;
-        padding: $padding-base-vertical $padding-base-horizontal;
+        padding-top: 2em;
+        padding-left: 12px;
         z-index: 4;
 
         a.logo-mini,
@@ -295,8 +276,6 @@
             right: 15px;
             height: 1px;
             width: calc(100% - 30px);
-            background: $opacity-5;
-
         }
 
         p{
@@ -309,31 +288,17 @@
         }
 
         .simple-text{
-            text-transform: uppercase;
+            text-transform: lowercase;;
+            font-size:2.4em;
             padding: $padding-base-vertical 0;
             display: block;
             white-space: nowrap;
-            // font-size: $font-size-base;
+            font-weight:bold;
             color: $white;
+            text-align:center;
             text-decoration: none;
-            font-weight: $font-weight-normal;
             line-height: 30px;
             overflow: hidden;
-        }
-    }
-
-    .logo-tim{
-        border-radius: 50%;
-        border: 1px solid #333;
-        display: block;
-        height: 61px;
-        width: 61px;
-        float: left;
-        overflow: hidden;
-
-        img{
-            width: 60px;
-            height: 60px;
         }
     }
 

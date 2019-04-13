@@ -1,14 +1,14 @@
-import moment from "moment";
+import moment from 'moment';
 
 const Ago = {
   install(Vue) {
-    Vue.filter("ago", function(value) {
-      if (!value) return "";
+    Vue.filter('ago', (value) => {
+      if (!value) return '';
 
-      let date = moment(value);
+      const date = moment(value);
       return date.fromNow();
     });
-  }
+  },
 };
 
 export default Ago;

@@ -1,6 +1,8 @@
-import { LOGIN, LOGOUT, AUTHENTICATE, REDIRECT_SIGNIN } from "./actions.types";
-import { SET_AUTHENTICATED, SET_TOKEN } from "./mutations.types";
-import router from "@/router";
+import {
+  LOGIN, LOGOUT, AUTHENTICATE, REDIRECT_SIGNIN,
+} from './actions.types';
+import { SET_AUTHENTICATED, SET_TOKEN } from './mutations.types';
+import router from '@/router';
 
 export default {
   [LOGIN]({ commit }, token) {
@@ -13,14 +15,13 @@ export default {
     dispatch(REDIRECT_SIGNIN);
   },
   [REDIRECT_SIGNIN]() {
-    router.push({ path: "signin" });
+    router.push({ path: 'signin' });
   },
   async [AUTHENTICATE]({ dispatch }, token) {
     if (token) {
       dispatch(LOGIN, token);
-      return;
     } else {
       dispatch(LOGOUT);
     }
-  }
+  },
 };

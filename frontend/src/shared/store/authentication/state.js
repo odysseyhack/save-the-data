@@ -1,4 +1,4 @@
 export default {
   authenticated: false,
-  token: null
+  token: null,
 };

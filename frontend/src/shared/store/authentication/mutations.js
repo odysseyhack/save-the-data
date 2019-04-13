@@ -1,4 +1,4 @@
-import { SET_AUTHENTICATED, SET_AUTH_USER, SET_TOKEN } from "./mutations.types";
+import { SET_AUTHENTICATED, SET_AUTH_USER, SET_TOKEN } from './mutations.types';
 
 export default {
   [SET_AUTHENTICATED](state, bool) {
@@ -9,5 +9,5 @@ export default {
   },
   [SET_AUTH_USER](state, user) {
     state.user = user;
-  }
+  },
 };
