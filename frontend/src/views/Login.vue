@@ -14,7 +14,7 @@
                     <div class="card card-login">
                         <form class="form" method="" action="">
                             <div class="card-header">
-                                <h4 class="card-title">firesync</h4>
+                                <img class='card-title' src='@/assets/img/firesync.png'>
                             </div>
                             <div class="card-body">
                                 <div class="input-group input-lg">
@@ -38,16 +38,16 @@
                 </div>
             </div>
         </div>
-    
+
     </body>
 </template>
 
 <script>
 export default {
-    name: "login"
+  name: 'login',
 };
 </script>
 
-<style src='@/assets/frontend/style.scss' lang='scss'>
+<style src='@/assets/style.scss' lang='scss'>
 
 </style>

@@ -7,14 +7,14 @@
 </template>
 <script>
 export default {
-    name:'machine-learning-icon',
-    props : [
-        'width',
-        'height',
-        'secondaryfill',
-        'fill'
-    ]
-}
+  name: 'machine-learning-icon',
+  props: [
+    'width',
+    'height',
+    'secondaryfill',
+    'fill',
+  ],
+};
 </script>
 <style lang="scss">
 
