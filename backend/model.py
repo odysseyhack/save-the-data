@@ -51,7 +51,7 @@ def get_number_of_patches():
                     densities.append(smoke_pred)
                     found_coordinates.append((cords['x_index'], cords['y_index'], cords['x_finish'], cords['y_finish'], smoke_pred[0][1]))
 
-    image = np.asarray(Image.open(image_path))
+    image = np.asarray(Image.open('/srv/www/savethedata/project/api/public/images/{}'.format(filename)))
     hsv = cv2.cvtColor(image, cv2.COLOR_BGR2HSV)
 
     return jsonify({'status': 'ok', 
