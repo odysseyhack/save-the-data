@@ -5,12 +5,12 @@
   </div>
 </template>
 <script>
-import Loading from "@/shared/components/loading/Loading.vue"
+import Loading from '@/shared/components/loading/Loading.vue';
 
 export default {
-  name: "main-app",
-  components : {
-    Loading
+  name: 'main-app',
+  components: {
+    Loading,
   },
 };
 </script>

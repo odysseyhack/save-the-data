@@ -6,18 +6,18 @@
      </transition>
 </template>
 <script>
-import MachineLearningIcon from "@/shared/components/icons/MachineLearningIcon";
+import MachineLearningIcon from '@/shared/components/icons/MachineLearningIcon';
 
 export default {
-  name: "loading",
+  name: 'loading',
   components: {
-    MachineLearningIcon
+    MachineLearningIcon,
   },
   computed: {
     loading() {
       return this.$store.state.general.loading;
-    }
-  }
+    },
+  },
 };
 </script>
 <style lang="scss">
@@ -45,4 +45,3 @@ export default {
   transition: opacity 0.2s;
 }
 </style>
-

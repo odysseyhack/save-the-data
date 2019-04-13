@@ -1,3 +1,4 @@
+
 import Vue from 'vue';
 import Main from './Main.vue';
 import router from './router';
@@ -16,17 +17,16 @@ Vue.use(PLUGINS.NavigatorOnline, store, TOGGLE_ONLINE);
 Vue.use(PLUGINS.Ago);
 
 router.beforeEach((to, from, next) => {
-
-  if(to.path == '/login') {
-   next();
-   return;
+  if (to.path == '/login') {
+    next();
+    return;
   }
-   store.commit(TOGGLE_LOADING,true);
-   next();
+  store.commit(TOGGLE_LOADING, true);
+  next();
 });
 
 router.afterEach((to, from) => {
-  setTimeout(() => (store.commit(TOGGLE_LOADING,false)), 1500); // timeout for demo purposes
+  setTimeout(() => store.commit(TOGGLE_LOADING, false), 1500); // timeout for demo purposes
 });
 
 new Vue({
