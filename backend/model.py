@@ -28,7 +28,7 @@ def get_number_of_patches():
     filename = request.args.get('filename')
 
     test_image = Image.open('/srv/www/savethedata/project/api/public/images/{}'.format(filename)) # .resize((800, 600))
-    # Test: test_image = Image.open('./images/test_2.jpg').resize((800, 600))
+    #test_image = Image.open('./images/test_2.jpg').resize((800, 600)) # Test
     with graph.as_default():
         densities = []
         found_coordinates = []
@@ -50,22 +50,28 @@ def get_number_of_patches():
                     smoke_pred = type_smoke_classifier.predict(sliding_example)[0][1]
 
                     densities.append(smoke_pred)
-                    found_coordinates.append((cords['x_index'], cords['y_index'], cords['x_finish'], cords['y_finish'], smoke_pred[0][1]))
+                    found_coordinates.append([cords['x_index'], cords['y_index'], cords['x_finish'], cords['y_finish']])
 
     image = np.asarray(Image.open('/srv/www/savethedata/project/api/public/images/{}'.format(filename)))
     hsv = cv2.cvtColor(image, cv2.COLOR_BGR2HSV)
-    # image = Image.open('./images/test_2.jpg').resize((800, 600)) TEST
-    # hsv = cv2.cvtColor(np.asarray(image), cv2.COLOR_RGB2GRAY)
+    #image = Image.open('./images/test_2.jpg').resize((800, 600)) #TEST
+    #hsv = Image.fromarray(cv2.cvtColor(np.asarray(image), cv2.COLOR_BGR2HSV))
 
     if len(found_coordinates) == 0:
-        high_brightness = []
+        high_brightness = 0
     else:
         high_brightness = retrieve_fire_roi(hsv, found_coordinates)
+
+    print({'status': 'ok', 
+                    'dark_smoke': 1 if np.mean(densities) > 0.8 else 0,
+                    'coordinates': found_coordinates, 
+                    'high_brightness': int(high_brightness)
+                    })
 
     return jsonify({'status': 'ok', 
                     'dark_smoke': 1 if np.mean(densities) > 0.8 else 0,
                     'coordinates': found_coordinates, 
-                    'high_brightness': high_brightness
+                    'high_brightness': int(high_brightness)
                     })
 
 
