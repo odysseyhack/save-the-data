@@ -58,7 +58,8 @@ class EvidenceController extends AbstractController {
         }
 
         $filename = $file->getClientOriginalName();
-        $extension = explode('.', $filename)[1];
+        $fileArray = explode('.', $filename);
+        $extension = end($fileArray);
 
         try {
             $filepath = '/var/images/' . $name . '.' . $extension;
