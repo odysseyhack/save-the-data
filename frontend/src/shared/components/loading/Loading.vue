@@ -20,29 +20,4 @@ export default {
   }
 };
 </script>
-<style lang="scss">
-#loader-icon {
-  animation: ckw 5s infinite;
-  position: relative;
-  left: 50%;
-  top: 50%;
-}
-
-@keyframes ckw {
-  0% {
-    transform: rotate(0deg);
-  }
-  50% {
-    transform: rotate(360deg);
-  }
-  100% {
-    transform: rotate(-360deg);
-  }
-}
-
-.fade-enter-active,
-.fade-leave-active {
-  transition: opacity 0.2s;
-}
-</style>
 
