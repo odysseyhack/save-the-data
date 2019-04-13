@@ -6,7 +6,7 @@ export default {
     formData.append("photo", file);
 
     return axios
-      .post("http://api.firesync.online/upload", formData, {
+      .post("https://api.firesync.online/upload", formData, {
         headers: {
           "Content-Type": "multipart/form-data"
         }
