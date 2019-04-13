@@ -27,6 +27,9 @@ import * as orderBy from 'lodash/orderBy';
 
 export default {
   name: 'incidents-overview',
+  mounted() {
+    this.$store.dispatch('loadIncidents')
+  },
   methods: {
     openIncident(id) {
 
