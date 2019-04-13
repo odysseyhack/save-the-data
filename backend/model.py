@@ -4,7 +4,7 @@ from keras.models import load_model
 import numpy as np
 from flask import Flask, jsonify, request
 import tensorflow as tf
-import cv2
+import cv2  
 
 
 CROP_SIZE = 100
@@ -28,7 +28,7 @@ def get_number_of_patches():
     filename = request.args.get('filename')
 
     test_image = Image.open('/srv/www/savethedata/project/api/public/images/{}'.format(filename)) # .resize((800, 600))
-
+    # Test: test_image = Image.open('./images/test_2.jpg').resize((800, 600))
     with graph.as_default():
         densities = []
         found_coordinates = []
@@ -54,11 +54,18 @@ def get_number_of_patches():
 
     image = np.asarray(Image.open('/srv/www/savethedata/project/api/public/images/{}'.format(filename)))
     hsv = cv2.cvtColor(image, cv2.COLOR_BGR2HSV)
+    # image = Image.open('./images/test_2.jpg').resize((800, 600)) TEST
+    # hsv = cv2.cvtColor(np.asarray(image), cv2.COLOR_RGB2GRAY)
+
+    if len(found_coordinates) == 0:
+        high_brightness = []
+    else:
+        high_brightness = retrieve_fire_roi(hsv, found_coordinates)
 
     return jsonify({'status': 'ok', 
                     'dark_smoke': 1 if np.mean(densities) > 0.8 else 0,
                     'coordinates': found_coordinates, 
-                    'high_brightness': retrieve_fire_roi(hsv, found_coordinates)
+                    'high_brightness': high_brightness
                     })
 
 
