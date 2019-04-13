@@ -53,7 +53,7 @@ def get_number_of_patches():
                     found_coordinates.append([cords['x_index'], cords['y_index'], cords['x_finish'], cords['y_finish']])
 
     image = np.asarray(Image.open('/srv/www/savethedata/project/api/public/images/{}'.format(filename)))
-    hsv = cv2.cvtColor(image, cv2.COLOR_BGR2HSV)
+    hsv = Image.fromarray(cv2.cvtColor(image, cv2.COLOR_BGR2HSV))
     #image = Image.open('./images/test_2.jpg').resize((800, 600)) #TEST
     #hsv = Image.fromarray(cv2.cvtColor(np.asarray(image), cv2.COLOR_BGR2HSV))
 
