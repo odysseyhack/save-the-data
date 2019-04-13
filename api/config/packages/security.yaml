@@ -16,6 +16,16 @@ security:
             guard:
                 authenticators:
                     - App\Security\TokenAuthenticator
+        incident:
+            pattern: ^/incident
+            guard:
+                authenticators:
+                    - App\Security\TokenAuthenticator
+        evidence:
+            pattern: ^/evidence
+            guard:
+                authenticators:
+                    - App\Security\TokenAuthenticator
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
