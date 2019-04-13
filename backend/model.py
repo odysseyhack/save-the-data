@@ -34,13 +34,14 @@ def get_number_of_patches():
 
         for x_index in range(test_image.size[0] // CROP_SIZE):
             for y_index in range(test_image.size[1] // CROP_SIZE):
+                cords = {
+                            'x_index': x_index * CROP_SIZE, 
+                            'y_index': y_index * CROP_SIZE,
+                            'x_finish': y_index * CROP_SIZE + CROP_SIZE,
+                            'y_finish': y_index * CROP_SIZE + CROP_SIZE
+                        }
 
-                coordinates = {
-                                'x_index': x_index * CROP_SIZE, 
-                                'y_index': y_index * CROP_SIZE
-                              }
-
-                sliding_example = retrieve_classification_example(test_image, coordinates)
+                sliding_example = retrieve_classification_example(test_image, cords)
                 
                 prediction = smoke_classifier.predict(sliding_example)[0]
 
@@ -48,7 +49,7 @@ def get_number_of_patches():
                     smoke_pred = type_smoke_classifier.predict(sliding_example)[0][1]
 
                     densities.append(smoke_pred)
-                    found_coordinates.append((x_start, y_start, x_finish, y_finish, smoke_pred[0][1]))
+                    found_coordinates.append((cords['x_index'], cords['y_index'], cords['x_finish'], cords['y_finish'], smoke_pred[0][1]))
 
     image = np.asarray(Image.open(image_path))
     hsv = cv2.cvtColor(image, cv2.COLOR_BGR2HSV)
@@ -60,11 +61,8 @@ def get_number_of_patches():
                     })
 
 
-def retrieve_classification_example(image, indices):
-    x_finish = indices['x_index']  + CROP_SIZE
-    y_finish = indices['y_index']  + CROP_SIZE
-
-    crop = image.crop((indices['x_index'], indices['y_index'], x_finish, y_finish)).resize(TARGET_SIZE)
+def retrieve_classification_example(image, cords):
+    crop = image.crop((cords['x_index'], cords['y_index'], cords['x_finish'], cords['y_finish'])).resize(TARGET_SIZE)
     crop_array = np.asarray(crop)
 
     return np.expand_dims(crop_array, axis=0)
