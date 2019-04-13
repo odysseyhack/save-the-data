@@ -16,22 +16,8 @@
                             <div class="card-header">
                                 <img class='card-title' src='@/assets/img/firesync.png'>
                             </div>
-                            <div class="card-body">
-                                <div class="input-group input-lg">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text"><i class="fire-icons icon-single-02"></i></span>
-                                    </div>
-                                    <input type="text" class="form-control" placeholder="email">
-                                </div>
-                                <div class="input-group input-lg">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text"><i class="fire-icons icon-caps-small"></i></span>
-                                    </div>
-                                    <input type="text" class="form-control" placeholder="password">
-                                </div>
-                            </div>
                             <div class="card-footer text-center">
-                                <router-link class="btn btn-primary btn-round btn-lg btn-block" to="/">Login</router-link>
+                                <router-link class="btn btn-primary btn-round btn-lg btn-block" to="/">Start</router-link>
                             </div>
                         </form>
                     </div>

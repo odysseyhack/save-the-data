@@ -3,35 +3,45 @@ import Router from 'vue-router';
 import Home from './views/Home.vue';
 import Dashboard from './views/Dashboard.vue';
 import Login from './views/Login.vue';
+import Demo from './views/Demo.vue';
+import DemoResult from './views/DemoResult.vue';
+import DemoUpload from './views/DemoUpload.vue';
 import IncidentsOverview from './views/IncidentsOverview.vue';
 
 Vue.use(Router);
 
 export default new Router({
-  mode: 'history',
-  linkExactActiveClass: 'active',
-  linkActiveClass: 'active',
+  mode: "history",
+  linkExactActiveClass: "active",
+  linkActiveClass: "active",
   routes: [
     {
-      path: '/',
+      path: "/",
       component: Home,
       children: [
         {
-          path: '/',
-          name: 'home',
-          component: Dashboard,
+          path: "/demo",
+          name: "demo",
+          component: Demo,
+          children: [
+            {
+              path: "/",
+              name: "demo-upload",
+              component: DemoUpload
+            },
+            {
+              path: "/demo/results",
+              name: "demo-results",
+              component: DemoResult
+            }
+          ]
         },
-        {
-          path: '/incidents',
-          name: 'incidents',
-          component: IncidentsOverview,
-        },
-      ],
+      ]
     },
     {
-      path: '/login',
-      name: 'login',
-      component: Login,
-    },
-  ],
+      path: "/login",
+      name: "login",
+      component: Login
+    }
+  ]
 });
