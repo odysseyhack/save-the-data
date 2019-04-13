@@ -1,5 +1,6 @@
 export default {
   online: false,
   error: false,
-  errors: []
+  errors: [],
+  loading: false,
 };

@@ -1,4 +1,5 @@
 // Fonts
+@import url('https://fonts.googleapis.com/css?family=Cabin|Open+Sans');
 
 @import 'icons';
 
@@ -13,7 +14,6 @@
 @import "components/bootstrap/mixins";
 
  // Bootstrap components
-
 @import "components/bootstrap/root";
 @import "components/bootstrap/reboot";
 @import "components/bootstrap/type";
@@ -65,6 +65,7 @@
  @import "components/custom/misc.scss";
  @import "components/custom/rtl.scss";
  @import "components/custom/input-group.scss";
+ @import "components/custom/loader.scss";
 
 
  // Vendor / Plugins
@@ -84,3 +85,6 @@
 @import "components/custom/cards/card-user";
 @import "components/custom/cards/card-task";
 @import "components/custom/cards/card-plain";
+
+// Pages
+@import 'pages/login_page'

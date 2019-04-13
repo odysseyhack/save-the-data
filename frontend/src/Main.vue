@@ -1,14 +1,16 @@
 <template>
   <div>
-    <span style="color:red" v-if="!isOnline">Network connection lost</span>
+    <loading></loading>
     <router-view></router-view>
   </div>
 </template>
 <script>
+import Loading from "@/shared/components/loading/Loading.vue"
 
 export default {
   name: "main-app",
+  components : {
+    Loading
+  },
 };
-
 </script>
-<style src='@/assets/style.scss' lang='scss'></style>

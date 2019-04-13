@@ -5,25 +5,25 @@
 const NavigatorOnline = {
   install(Vue, store, mutation) {
     if (!store) {
-      throw new Error("Please provide Vuex store.");
+      throw new Error('Please provide Vuex store.');
     }
 
     const vm = new Vue({
       data: {
-        online: window.navigator.onLine
+        online: window.navigator.onLine,
       },
       watch: {
         online(newVal) {
           store.commit(mutation, newVal);
-        }
-      }
+        },
+      },
     });
 
-    window.addEventListener("online", function handleOnline() {
+    window.addEventListener('online', () => {
       vm.$data.online = true;
     });
 
-    window.addEventListener("offline", function handleOffline() {
+    window.addEventListener('offline', () => {
       vm.$data.online = false;
     });
 
@@ -31,13 +31,13 @@ const NavigatorOnline = {
       computed: {
         isOnline() {
           return vm.$data.online;
-        }
-      }
+        },
+      },
     });
-  }
+  },
 };
 
-if (typeof window !== "undefined" && window.Vue) {
+if (typeof window !== 'undefined' && window.Vue) {
   window.Vue.use(NavigatorOnline);
 }
 
