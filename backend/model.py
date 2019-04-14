@@ -59,7 +59,7 @@ def get_number_of_patches():
         hsv = Image.fromarray(cv2.cvtColor(image, cv2.COLOR_BGR2HSV))
 
         store_smoke_predictions(Image.fromarray(image), densities, found_coordinates, filename)
-        store_fire_prediction(image, np.asarray(found_coordinates))
+        store_fire_prediction(image, np.asarray(found_coordinates), filename)
 
         high_brightness = retrieve_fire_roi(hsv, found_coordinates)
 
@@ -105,7 +105,7 @@ def store_smoke_predictions(image, densities, coordinates, filename):
     draw_image.save('/srv/www/savethedata/project/api/public/images/smoke_predictions/{}'.format(filename))
 
 
-def store_fire_prediction(image, coordinates):
+def store_fire_prediction(image, coordinates, filename):
     hsv = cv2.cvtColor(image, cv2.COLOR_BGR2HSV)
 
     lowest_indices = np.unique(np.where(np.array(coordinates)[:, 3].astype(int) == np.max([x[3] for x in coordinates]))[0])
