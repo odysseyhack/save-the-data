@@ -43,6 +43,10 @@ import {
   SET_DEMO_URL
 } from "@/shared/store/demo/mutations.types";
 
+import {
+  TOGGLE_LOADING
+} from "@/shared/store/general/mutations.types";
+
 export default {
     name: "demo-upload",
     data() {
@@ -53,15 +57,17 @@ export default {
     methods: {
         upload(event) {
             this.file = this.$refs.file.files[0];
-
+            this.$store.commit(TOGGLE_LOADING,true)
             api.upload(this.file).then((res) => {
-                this.$store.commit(SET_DEMO_URL,res.url)
-
+                this.$store.commit(SET_DEMO_URL,res.data.url)
+                this.$store.commit(SET_DEMO_SMOKE,res.data.data.dark_smoke > 0)
+                this.$store.commit(SET_DEMO_FIRE,res.data.data.high_brightness > 0)
+                this.$store.commit(TOGGLE_LOADING,false)
                 this.$router.push({
                     'name': 'demo-results'
                 })
             }).catch((res)=>{
-                
+                this.$store.commit(TOGGLE_LOADING,false)
             })
         }
     }

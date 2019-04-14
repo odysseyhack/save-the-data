@@ -10,6 +10,17 @@ import MachineLearningIcon from '@/shared/components/icons/MachineLearningIcon';
 
 export default {
   name: 'loading',
+  data() {
+    return  {
+      quotes : [
+        'Firefighters don’t go on strike.',
+        'With better gear, firefighters no longer surround and drown a fire they go in.',
+        'A good firefighter knows how, an educated firefighter knows why.',
+        'In fire you can plan everything out to the minute, and a minute before that everything changes.',
+        'Good Firefighters will know their job. Great Firefighters will also know the job of the person above them as well as teach their job to the person below them. '
+      ]
+    }
+  },
   components: {
     MachineLearningIcon,
   },

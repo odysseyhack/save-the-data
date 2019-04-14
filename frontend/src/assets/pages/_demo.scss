@@ -3,8 +3,15 @@
     color: $secondary;
   }
 
+
   .card {
     background: #fff;
+
+    .table {
+      td {
+        color:$secondary !important;
+      }
+    }
 
     .fire-icons {
       background: #efefef;
