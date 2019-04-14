@@ -53,20 +53,15 @@ def get_number_of_patches():
                     found_coordinates.append([cords['x_index'], cords['y_index'], cords['x_finish'], cords['y_finish']])
 
     image = np.asarray(Image.open('/srv/www/savethedata/project/api/public/images/{}'.format(filename)))
-    hsv = Image.fromarray(cv2.cvtColor(image, cv2.COLOR_BGR2HSV))
-    #image = Image.open('./images/test_2.jpg').resize((800, 600)) #TEST
-    #hsv = Image.fromarray(cv2.cvtColor(np.asarray(image), cv2.COLOR_BGR2HSV))
 
     if len(found_coordinates) == 0:
         high_brightness = 0
     else:
+        #hsv = Image.fromarray(cv2.cvtColor(image, cv2.COLOR_BGR2HSV)) # Save
+        hsv = cv2.cvtColor(image, cv2.COLOR_BGR2HSV)
+        #image = Image.open('./images/test_2.jpg').resize((800, 600)) #TEST
+        #hsv = Image.fromarray(cv2.cvtColor(np.asarray(image), cv2.COLOR_BGR2HSV))
         high_brightness = retrieve_fire_roi(hsv, found_coordinates)
-
-    print({'status': 'ok', 
-                    'dark_smoke': 1 if np.mean(densities) > 0.8 else 0,
-                    'coordinates': found_coordinates, 
-                    'high_brightness': int(high_brightness)
-                    })
 
     return jsonify({'status': 'ok', 
                     'dark_smoke': 1 if np.mean(densities) > 0.8 else 0,
@@ -94,6 +89,8 @@ def retrieve_fire_roi(hsv_image, num_found):
     fire_roi = np.asarray(hsv_image.crop((left, top, right, bottom)))
 
     _, _, value = cv2.split(fire_roi)
+
+    value = cv2.equalizeHist(value) # Perform histogram normalization on the value channel
     number_above_threshold = np.unique(value.flatten() > BRIGHTNESS_THRESHOLD, return_counts=True)[1][1]
 
     return number_above_threshold
