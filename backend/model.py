@@ -51,7 +51,7 @@ def get_number_of_patches():
                     densities.append(smoke_pred)
                     found_coordinates.append([cords['x_index'], cords['y_index'], cords['x_finish'], cords['y_finish']])
 
-    image = np.asarray(Image.open('/srv/www/savethedata/project/api/public/images/{}'.format(filename))).resize((800, 600))
+    image = np.asarray(Image.open('/srv/www/savethedata/project/api/public/images/{}'.format(filename)).resize((800, 600)))
 
     if len(found_coordinates) == 0:
         high_brightness = 0
