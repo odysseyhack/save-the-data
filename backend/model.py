@@ -58,7 +58,7 @@ def get_number_of_patches():
         high_brightness = 0
     else:
         #hsv = Image.fromarray(cv2.cvtColor(image, cv2.COLOR_BGR2HSV)) # Save
-        hsv = cv2.cvtColor(image, cv2.COLOR_BGR2HSV)
+        hsv = Image.fromarray(cv2.cvtColor(image, cv2.COLOR_BGR2HSV))
         #image = Image.open('./images/test_2.jpg').resize((800, 600)) #TEST
         #hsv = Image.fromarray(cv2.cvtColor(np.asarray(image), cv2.COLOR_BGR2HSV))
         high_brightness = retrieve_fire_roi(hsv, found_coordinates)
