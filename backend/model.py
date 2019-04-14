@@ -58,8 +58,9 @@ def get_number_of_patches():
     else:
         hsv = Image.fromarray(cv2.cvtColor(image, cv2.COLOR_BGR2HSV))
 
-        hsv.save('/srv/www/savethedata/project/api/public/images/hsv/{}'.format(filename))
         store_smoke_predictions(Image.fromarray(image), densities, found_coordinates, filename)
+        store_fire_prediction(image, np.asarray(found_coordinates))
+
         high_brightness = retrieve_fire_roi(hsv, found_coordinates)
 
     return jsonify({'status': 'ok', 
@@ -102,3 +103,21 @@ def store_smoke_predictions(image, densities, coordinates, filename):
         draw.text((coord[0] + 10, coord[1] + 10), str(densities[index]))
 
     draw_image.save('/srv/www/savethedata/project/api/public/images/smoke_predictions/{}'.format(filename))
+
+
+def store_fire_prediction(image, coordinates):
+    hsv = cv2.cvtColor(image, cv2.COLOR_BGR2HSV)
+
+    lowest_indices = np.unique(np.where(np.array(coordinates)[:, 3].astype(int) == np.max([x[3] for x in coordinates]))[0])
+    lowest_cells = np.array(coordinates)[lowest_indices].astype(int)
+
+    left = np.min([x[0] for x in lowest_cells]) - 50
+    right = np.max([x[2] for x in lowest_cells]) + 50
+    top = np.max([x[3] for x in lowest_cells])
+    bottom = top + 100
+
+    hsv_box = Image.fromarray(hsv)
+    draw = ImageDraw.Draw(hsv_box)
+    draw.rectangle([(left, top), (right, bottom)], outline='white')
+
+    hsv_box.save('/srv/www/savethedata/project/api/public/images/hsv/{}'.format(filename))
