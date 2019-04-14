@@ -117,7 +117,7 @@ class EvidenceService {
 
         curl_close($cURL);
 
-        return json_decode($result, true);
+        return json_decode($result);
     }
 
 }
