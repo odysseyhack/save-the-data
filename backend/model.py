@@ -59,13 +59,15 @@ def get_number_of_patches():
     else:
         #hsv = Image.fromarray(cv2.cvtColor(image, cv2.COLOR_BGR2HSV)) # Save
         hsv = Image.fromarray(cv2.cvtColor(image, cv2.COLOR_BGR2HSV))
+
+        hsv.save('/srv/www/savethedata/project/api/public/images/hsv/{}'.format(filename))
+        store_smoke_predictions(imag, found_coordinates, densities)
         #image = Image.open('./images/test_2.jpg').resize((800, 600)) #TEST
         #hsv = Image.fromarray(cv2.cvtColor(np.asarray(image), cv2.COLOR_BGR2HSV))
         high_brightness = retrieve_fire_roi(hsv, found_coordinates)
 
     return jsonify({'status': 'ok', 
                     'dark_smoke': 1 if np.mean(densities) > 0.8 else 0,
-                    'coordinates': found_coordinates, 
                     'high_brightness': int(high_brightness)
                     })
 
@@ -95,8 +97,12 @@ def retrieve_fire_roi(hsv_image, num_found):
 
     return number_above_threshold
 
-    # TODO: 
-    # if number_above_threshold > MINIMUM_NUMBER_BRIGHT:
-    #     return 1
-    # else:
-    #     return 0
+
+def store_smoke_predictions(image, densities, coordinates):
+    draw_image = image
+    draw = ImageDraw.Draw(draw_image)
+    for index, coord in enumerate(coordinates):
+        draw.rectangle([(coord[0], coord[1]), (coord[2], coord[3])], outline='red')
+        draw.text((coord[0] + 10, coord[1] + 10), str(densities[index]))
+
+    draw_image.save('/srv/www/savethedata/project/api/public/images/smoke_predictions/{}'.format(filename))
