@@ -27,8 +27,7 @@ app = Flask(__name__)
 def get_number_of_patches():
     filename = request.args.get('filename')
 
-    test_image = Image.open('/srv/www/savethedata/project/api/public/images/{}'.format(filename)) # .resize((800, 600))
-    #test_image = Image.open('./images/test_2.jpg').resize((800, 600)) # Test
+    test_image = Image.open('/srv/www/savethedata/project/api/public/images/{}'.format(filename)).resize((800, 600))
     with graph.as_default():
         densities = []
         found_coordinates = []
@@ -52,18 +51,15 @@ def get_number_of_patches():
                     densities.append(smoke_pred)
                     found_coordinates.append([cords['x_index'], cords['y_index'], cords['x_finish'], cords['y_finish']])
 
-    image = np.asarray(Image.open('/srv/www/savethedata/project/api/public/images/{}'.format(filename)))
+    image = np.asarray(Image.open('/srv/www/savethedata/project/api/public/images/{}'.format(filename))).resize((800, 600))
 
     if len(found_coordinates) == 0:
         high_brightness = 0
     else:
-        #hsv = Image.fromarray(cv2.cvtColor(image, cv2.COLOR_BGR2HSV)) # Save
         hsv = Image.fromarray(cv2.cvtColor(image, cv2.COLOR_BGR2HSV))
 
         hsv.save('/srv/www/savethedata/project/api/public/images/hsv/{}'.format(filename))
         store_smoke_predictions(Image.fromarray(image), densities, found_coordinates, filename)
-        #image = Image.open('./images/test_2.jpg').resize((800, 600)) #TEST
-        #hsv = Image.fromarray(cv2.cvtColor(np.asarray(image), cv2.COLOR_BGR2HSV))
         high_brightness = retrieve_fire_roi(hsv, found_coordinates)
 
     return jsonify({'status': 'ok', 
