@@ -61,7 +61,7 @@ def get_number_of_patches():
         hsv = Image.fromarray(cv2.cvtColor(image, cv2.COLOR_BGR2HSV))
 
         hsv.save('/srv/www/savethedata/project/api/public/images/hsv/{}'.format(filename))
-        store_smoke_predictions(image, found_coordinates, densities)
+        store_smoke_predictions(Image.fromarray(image), found_coordinates, densities)
         #image = Image.open('./images/test_2.jpg').resize((800, 600)) #TEST
         #hsv = Image.fromarray(cv2.cvtColor(np.asarray(image), cv2.COLOR_BGR2HSV))
         high_brightness = retrieve_fire_roi(hsv, found_coordinates)
