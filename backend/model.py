@@ -102,6 +102,9 @@ def store_smoke_predictions(image, densities, coordinates):
     draw_image = image
     draw = ImageDraw.Draw(draw_image)
     for index, coord in enumerate(coordinates):
+        print(coord)
+        print(densities[index])
+        print('until here')
         draw.rectangle([(coord[0], coord[1]), (coord[2], coord[3])], outline='red')
         draw.text((coord[0] + 10, coord[1] + 10), str(densities[index]))
 
