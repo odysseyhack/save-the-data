@@ -23,7 +23,7 @@
                             <th scope="row">Fire</th>
                             <td><span v-if='fire'>Yes</span><span v-else>No</span></td>
                         </tr>
-    
+
                     </tbody>
                 </table>
                 <div id="quadrant" style="height:450px;width:600px;"></div>
@@ -48,8 +48,13 @@
                         </a>
 
                     <a href="javascript:void(0)">
-                          <img style="" :src="image">
-                            <p class='undertext machine-learning'>Augmented</p>
+                          <img style="" :src="smoke_url">
+                            <p class='undertext machine-learning'>Augmented ( Smoke )</p>
+                          
+                        </a>
+                        <a href="javascript:void(0)">
+                          <img style="" :src="fire_url">
+                            <p class='undertext machine-learning'>Augmented ( Fire )</p>
                           
                         </a>
                 </div>
@@ -63,22 +68,45 @@
 import Highcharts from "highcharts";
 export default {
     name: "demo-result",
-    computed : {
+    computed: {
         image() {
             return this.$store.state.demo.url
+        },
+        fire_url() {
+            return this.$store.state.demo.url_fire
+        },
+        smoke_url() {
+            return this.$store.state.demo.url_smoke
         },
         smoke() {
             return this.$store.state.demo.smoke
         },
         fire() {
             return this.$store.state.demo.fire
+        },
+        prediction() {
+
+            let x = 0;
+            let y = 0;
+
+            if (this.smoke > 0 && this.fire > 0) {
+                x = 50;
+                y = 50;
+            }
+
+            if (this.smoke > 0 && this.fire <= 0) {
+                x = -50;
+                y = 50;
+            }
+
+            return {
+                x: x,
+                y: y
+            }
         }
     },
     mounted() {
-        let data = [{
-            x: 100,
-            y: 50
-        }];
+        let data = [this.prediction];
 
         let chart = new Highcharts.Chart({
                 chart: {
@@ -115,6 +143,10 @@ export default {
                         }
 
                         return "<b>" + name + "</b>";
+                    },
+                    style: {
+                        color: "#503472",
+                        fontWeight: 'bold'
                     }
                 },
                 plotOptions: {
@@ -152,7 +184,7 @@ export default {
                     lineWidth: 1
                 },
                 series: [{
-                    color: "#185aa9",
+                    color: "#503472",
                     data: data
                 }]
             },
