@@ -65,7 +65,7 @@ class EvidenceController extends AbstractController {
             $filepath = '/var/images/' . $name . '.' . $extension;
             $url = 'https://api.firesync.online/images/'.$name.'.'.$extension;
             $this->filesystem->dumpFile($filepath, file_get_contents($file));
-            $result = $this->evidenceService->callClassifier($filepath);
+            $result = $this->evidenceService->callClassifier($name.'.'.$extension);
             $finalResult = ['data' => $result, 'url' => $url];
 
             return new JsonResponse($finalResult);
